@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gberaadelivery/screens/home_screen.dart';
 import 'package:gberaadelivery/screens/location.dart';
@@ -6,7 +7,9 @@ import 'package:gberaadelivery/screens/new_shipments.dart';
 import 'package:gberaadelivery/screens/onboard_screen/onboard_screen.dart';
 import 'package:gberaadelivery/screens/shipment_create.dart';
 import 'package:flutter/material.dart';
+import 'package:gberaadelivery/screens/signup_screen.dart';
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
 void main() {
   runApp(MyApp());
 }
@@ -41,7 +44,7 @@ class MyApp extends StatelessWidget {
                 routes: {
                   '/': (context) => OnBoardingPage(),
                   '/login': (context) => LoginScreen(),
-                  // 'signup': (context) => SignUpScreen(),
+                  '/signup': (context) => SignupScreen(),
                   '/homescreen': (context) => HomeScreen(),
                   '/newshimpent': (context) => NewShipments(),
                   '/shipmentcreate': (context) => ShipmentCreate(),

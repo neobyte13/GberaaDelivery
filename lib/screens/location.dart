@@ -2,6 +2,7 @@ import 'package:gberaadelivery/constants.dart';
 import 'package:gberaadelivery/widgets/common_app_bar.dart';
 import 'package:gberaadelivery/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:gberaadelivery/widgets/input_text_box.dart';
 
 class LocationSelect extends StatefulWidget {
   @override
@@ -10,6 +11,7 @@ class LocationSelect extends StatefulWidget {
 
 class _LocationSelectState extends State<LocationSelect> {
   bool swapLocation = true;
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     Size maxSize = MediaQuery.of(context).size;
@@ -123,13 +125,25 @@ class _LocationSelectState extends State<LocationSelect> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '15 August 2020',
+                              "${selectedDate.toLocal()}".split(' ')[0],
                               style: kNormalText,
                             ),
-                            Icon(
-                              Icons.calendar_today,
-                              color: kMainColor,
-                            ),
+                            InkWell(
+                                onTap: () async {
+                                  final DateTime picked = await showDatePicker(
+                                    context: context,
+                                    initialDate: selectedDate,
+                                    firstDate: DateTime(2020),
+                                    lastDate: DateTime(2021),
+                                    helpText: 'Select pickup date',
+                                    fieldLabelText: 'Pickup date',
+                                  );
+                                  if (picked != null && picked != selectedDate)
+                                    setState(() {
+                                      selectedDate = picked;
+                                    });
+                                },
+                                child: Icon(Icons.calendar_today)),
                           ],
                         ),
                         SizedBox(
@@ -169,22 +183,14 @@ class _LocationSelectState extends State<LocationSelect> {
                           children: [
                             Container(
                               width: maxSize.width * 0.4,
-                              child: Text(
-                                'CHRIS NISWANDEE SMALLSYS INC 795 E DRAGRAM TUCSON AZ 85705 USA',
-                                style: kNormalText.copyWith(
-                                  fontSize: 10.0,
-                                ),
-                                textAlign: TextAlign.left,
+                              child: InputTextBox(
+                                labeltext: 'Pickup Address',
                               ),
                             ),
                             Container(
                               width: maxSize.width * 0.4,
-                              child: Text(
-                                'CHRIS NISWANDEE SMALLSYS INC 795 E DRAGRAM TUCSON AZ 85705 USA',
-                                style: kNormalText.copyWith(
-                                  fontSize: 10.0,
-                                ),
-                                textAlign: TextAlign.left,
+                              child: InputTextBox(
+                                labeltext: 'Delivery Address',
                               ),
                             ),
                           ],

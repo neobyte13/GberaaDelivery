@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class InputTextBox extends StatefulWidget {
   final String labeltext;
+  final dynamic controller;
 
   InputTextBox({
     this.labeltext,
+    this.controller,
   });
 
   @override
@@ -35,9 +37,9 @@ class _InputTextBoxState extends State<InputTextBox> {
               decoration: InputDecoration(
                 hintText: widget.labeltext,
                 hintStyle: TextStyle(fontSize: 14),
-                prefixIcon: widget.labeltext == "User Name"
+                prefixIcon: widget.labeltext == "Email"
                     ? Icon(Icons.email)
-                    : Icon(Icons.lock),
+                    : Icon(Icons.text_format),
                 suffixIcon: widget.labeltext == "Password"
                     ? IconButton(
                         icon: iconVisible == false
@@ -61,6 +63,7 @@ class _InputTextBoxState extends State<InputTextBox> {
               ),
               obscureText: widget.labeltext == "Password" ? isHidden : false,
               keyboardType: TextInputType.text,
+              controller: widget.controller,
             )),
       ],
     );
