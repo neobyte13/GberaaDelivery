@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gberaadelivery/screens/home_screen.dart';
 import 'package:gberaadelivery/screens/location.dart';
@@ -9,7 +8,6 @@ import 'package:gberaadelivery/screens/shipment_create.dart';
 import 'package:flutter/material.dart';
 import 'package:gberaadelivery/screens/signup_screen.dart';
 
-final FirebaseAuth _auth = FirebaseAuth.instance;
 void main() {
   runApp(MyApp());
 }

@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gberaadelivery/constants.dart';
-import 'package:gberaadelivery/widgets/custom_button.dart';
-import 'package:gberaadelivery/widgets/input_text_box.dart';
 import 'package:flutter/material.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -27,111 +25,134 @@ class _SignupScreenState extends State<SignupScreen> {
         child: Container(
           margin: EdgeInsets.all(20),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Image.asset('assets/images/login.png'),
-                Text(
-                  'Sign Up',
-                  style: kMainHeading,
-                ),
-                SizedBox(
-                  height: maxSize.height * 0.03,
-                ),
-                /*InputTextBox(
-                  labeltext: 'Email',
-                  controller: _emailController,
-                ),**/
-                TextFormField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'Email'),
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter a valid email';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: maxSize.height * 0.03,
-                ),
-                TextFormField(
-                  controller: _phoneController,
-                  decoration: const InputDecoration(labelText: 'Phone Number'),
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter a valid phone number';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: maxSize.height * 0.03,
-                ),
-                TextFormField(
-                  controller: _passwordController,
-                  decoration: const InputDecoration(labelText: 'Password'),
-                  validator: (String value) {
-                    if (value.isEmpty) {
-                      return 'Please enter a password';
-                    }
-                    return null;
-                  },
-                ),
-                SizedBox(
-                  height: maxSize.height * 0.07,
-                ),
-                /*CustomButton(
-                  maxSize: maxSize,
-                  bheight: 0.07,
-                  bwidth: 0.7,
-                  buttonText: 'Signup',
-                  pageRoute: '/homescreen',
-                  color: kMainColor,
-                ),**/
-                Container(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  decoration: BoxDecoration(
-                      color: kMainColor,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey[400],
-                          offset: Offset(6.0, 6.0),
-                          blurRadius: 10.0,
-                          spreadRadius: 1.0,
-                        ),
-                        BoxShadow(
-                          color: Colors.white,
-                          offset: Offset(-6.0, -6.0),
-                          blurRadius: 10.0,
-                          spreadRadius: 1.0,
-                        ),
-                      ]),
-                  alignment: Alignment.center,
-                  child: RaisedButton(
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        _register();
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Image.asset('assets/images/login.png'),
+                  Text(
+                    'Sign Up',
+                    style: kMainHeading,
+                  ),
+                  SizedBox(
+                    height: maxSize.height * 0.03,
+                  ),
+                  /*InputTextBox(
+                    labeltext: 'Email',
+                    controller: _emailController,
+                  ),**/
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(labelText: 'Email'),
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return 'Please enter a valid email';
                       }
+                      return null;
                     },
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(
-                        backgroundColor: kMainColor,
-                        decorationColor: kMainColor,
+                  ),
+                  SizedBox(
+                    height: maxSize.height * 0.03,
+                  ),
+                  TextFormField(
+                    controller: _phoneController,
+                    decoration:
+                        const InputDecoration(labelText: 'Phone Number'),
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return 'Please enter a valid phone number';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: maxSize.height * 0.03,
+                  ),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: const InputDecoration(labelText: 'Password'),
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return 'Please enter a password';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: maxSize.height * 0.07,
+                  ),
+                  /*CustomButton(
+                    maxSize: maxSize,
+                    bheight: 0.07,
+                    bwidth: 0.7,
+                    buttonText: 'Signup',
+                    pageRoute: '/homescreen',
+                    color: kMainColor,
+                  ),**/
+                  Container(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    decoration: BoxDecoration(
+                        color: kMainColor,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey[400],
+                            offset: Offset(6.0, 6.0),
+                            blurRadius: 10.0,
+                            spreadRadius: 1.0,
+                          ),
+                          BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(-6.0, -6.0),
+                            blurRadius: 10.0,
+                            spreadRadius: 1.0,
+                          ),
+                        ]),
+                    alignment: Alignment.center,
+                    child: RaisedButton(
+                      color: kMainColor,
+                      highlightColor: kMainColor,
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          _register();
+                        }
+                      },
+                      child: Text(
+                        'Submit',
+                        style: TextStyle(
+                          backgroundColor: kMainColor,
+                          decorationColor: kMainColor,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  alignment: Alignment.center,
-                  child: Text(_success == null
-                      ? ''
-                      : (_success
-                          ? 'Successfully registered ' + _userEmail
-                          : 'Registration failed')),
-                )
-              ],
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/login');
+                      },
+                      child: Text(
+                        'Log In',
+                        style: TextStyle(
+                          color: Color(0xFFFBAA29),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: maxSize.height * 0.07,
+                  ),
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(_success == null
+                        ? ''
+                        : (_success
+                            ? 'Successfully registered ' + _userEmail
+                            : 'Registration failed')),
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -150,9 +171,10 @@ class _SignupScreenState extends State<SignupScreen> {
         _success = true;
         _userEmail = user.email;
       });
+      Navigator.pushNamed(context, '/homescreen');
     } else {
       setState(() {
-        _success = true;
+        _success = false;
       });
     }
   }
