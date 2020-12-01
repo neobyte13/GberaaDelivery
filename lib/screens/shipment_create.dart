@@ -15,6 +15,14 @@ class _ShipmentCreateState extends State<ShipmentCreate> {
   bool b1isPressed = false;
   bool b2isPressed = false;
   String labeltextOnPress;
+  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _lController = TextEditingController();
+  final TextEditingController _wController = TextEditingController();
+  final TextEditingController _hController = TextEditingController();
+  String weight = '0';
+  String length = '0';
+  String width = '0';
+  String height = '0';
   @override
   Widget build(BuildContext context) {
     Size maxSize = MediaQuery.of(context).size;
@@ -58,6 +66,7 @@ class _ShipmentCreateState extends State<ShipmentCreate> {
                           CustomInput(
                             iwidth: 0.4,
                             inPutType: TextInputType.number,
+                            controller: _weightController,
                             labeltext: labeltextOnPress == null
                                 ? 'Choose Weight'
                                 : 'Weight in $labeltextOnPress',
@@ -104,32 +113,85 @@ class _ShipmentCreateState extends State<ShipmentCreate> {
                             iwidth: 0.2,
                             inPutType: TextInputType.number,
                             labeltext: 'Length',
+                            controller: _lController,
                           ),
                           Text('X'),
                           CustomInput(
                             iwidth: 0.2,
                             inPutType: TextInputType.number,
                             labeltext: 'Width',
+                            controller: _wController,
                           ),
                           Text('X'),
                           CustomInput(
                             iwidth: 0.2,
                             inPutType: TextInputType.number,
                             labeltext: 'Height',
+                            controller: _hController,
                           ),
                         ],
                       ),
                       SizedBox(
                         height: maxSize.height * 0.04,
                       ),
-                      CustomButton(
-                        maxSize: maxSize,
-                        bwidth: 0.4,
-                        bheight: 0.06,
-                        buttonText: 'Add Details',
-                        color: kMainColor,
-                        pageRoute: '/location',
-                        buttonTap: () {},
+                      GestureDetector(
+                        onTap: () {
+                          weight = _weightController.toString();
+                          length = _lController.toString();
+                          width = _wController.toString();
+                          height = _hController.toString();
+                          final snackBar = SnackBar(
+                            backgroundColor: Colors.white,
+                            content: Container(
+                              width: 10,
+                              height: 10,
+                              child: Image(
+                                fit: BoxFit.contain,
+                                image: AssetImage('assets/gif/25.gif'),
+                              ),
+                            ),
+                            action: SnackBarAction(
+                              label: 'Creating..',
+                              textColor: kMainColor,
+                              onPressed: () {},
+                            ),
+                          );
+                          Scaffold.of(context).showSnackBar(snackBar);
+                          Navigator.pushNamed(context, '/location', arguments: {
+                            weight: weight,
+                            height: height,
+                            width: width,
+                            length: length,
+                          });
+                        },
+                        child: Container(
+                          width: maxSize.width * 0.4,
+                          height: maxSize.height * 0.06,
+                          decoration: BoxDecoration(
+                              color: kMainColor,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey[400],
+                                  offset: Offset(6.0, 6.0),
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0,
+                                ),
+                                BoxShadow(
+                                  color: Colors.white,
+                                  offset: Offset(-6.0, -6.0),
+                                  blurRadius: 10.0,
+                                  spreadRadius: 1.0,
+                                ),
+                              ]),
+                          child: Center(
+                            child: Text(
+                              'Add Details',
+                              style: kMainHeading.copyWith(
+                                  fontSize: 20.0, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

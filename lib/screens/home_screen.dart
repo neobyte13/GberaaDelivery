@@ -30,10 +30,6 @@ class HomeScreen extends StatelessWidget {
                         Icons.menu,
                         color: Colors.white,
                       ),
-                      Text(
-                        'Current Location',
-                        style: kLightGreyText.copyWith(fontSize: 12.0),
-                      ),
                     ],
                   ),
                   Row(
@@ -48,7 +44,10 @@ class HomeScreen extends StatelessWidget {
                         width: maxSize.width * 0.02,
                       ),
                       DropDownData(
-                        category: ['Lagos', 'Ogun', 'Oyo', 'Osun'],
+                        category: [
+                          'Lagos',
+                          'Ogun',
+                        ],
                         elevation: 0,
                         labelText: 'Location',
                         iconColor: Colors.white,
@@ -71,14 +70,14 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: maxSize.height * 0.01,
                         ),
-                        Text(
+                        /*Text(
                           'Track your shipment in one click',
                           style: kLightGreyText.copyWith(fontSize: 15.0),
-                        ),
+                        ),**/
                       ],
                     ),
                   ),
-                  Padding(
+                  /*Padding(
                     padding: EdgeInsets.only(top: 18.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
+                  ),**/
                 ],
               ),
             )),
@@ -147,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: maxSize.height * 0.02,
+                      height: maxSize.height * 0.03,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

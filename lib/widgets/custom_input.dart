@@ -4,12 +4,9 @@ class CustomInput extends StatefulWidget {
   final String labeltext;
   final inPutType;
   final double iwidth;
+  final TextEditingController controller;
 
-  CustomInput({
-    this.labeltext,
-    this.inPutType,
-    this.iwidth,
-  });
+  CustomInput({this.labeltext, this.inPutType, this.iwidth, this.controller});
 
   @override
   _CustomInputState createState() => _CustomInputState();
@@ -38,11 +35,12 @@ class _CustomInputState extends State<CustomInput> {
                   color: Colors.white,
                   offset: Offset(-6.0, -6.0),
                   blurRadius: 10.0,
-                  spreadRadius: 1.0,
+                  spreadRadius: 0.1,
                 ),
               ]),
           child: TextField(
             keyboardType: widget.inPutType,
+            controller: widget.controller,
             decoration: InputDecoration(
               hintText: widget.labeltext,
               hintStyle: TextStyle(fontSize: 14),
