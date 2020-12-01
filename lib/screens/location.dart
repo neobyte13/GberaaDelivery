@@ -24,10 +24,10 @@ class _LocationSelectState extends State<LocationSelect> {
   @override
   Widget build(BuildContext context) {
     Size maxSize = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
+      child: Scaffold(
+        backgroundColor: Colors.grey[100],
+        body: SafeArea(
           child: Column(
             children: [
               CommonAppBar(
